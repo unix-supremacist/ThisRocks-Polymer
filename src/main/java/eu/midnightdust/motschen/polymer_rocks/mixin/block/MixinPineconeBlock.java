@@ -3,6 +3,9 @@ package eu.midnightdust.motschen.polymer_rocks.mixin.block;
 import eu.midnightdust.motschen.polymer_rocks.block.ItemDisplayPineconeModel;
 import eu.midnightdust.motschen.rocks.block.Pinecone;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.blocks.api.BlockModelType;
+import eu.pb4.polymer.blocks.api.PolymerBlockResourceUtils;
+import eu.pb4.polymer.blocks.api.PolymerTexturedBlock;
 import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,10 +18,10 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(value = Pinecone.class, remap = false)
-public class MixinPineconeBlock implements FactoryBlock {
+public class MixinPineconeBlock implements FactoryBlock, PolymerTexturedBlock {
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
-        return Blocks.STRUCTURE_VOID.getDefaultState();
+        return PolymerBlockResourceUtils.requestEmpty(BlockModelType.TRIPWIRE_BLOCK);
     }
 
     @Override

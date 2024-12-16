@@ -3,6 +3,9 @@ package eu.midnightdust.motschen.polymer_rocks.mixin.block;
 import eu.midnightdust.motschen.polymer_rocks.block.ItemDisplayOverworldGeyserModel;
 import eu.midnightdust.motschen.rocks.block.OverworldGeyser;
 import eu.pb4.factorytools.api.block.FactoryBlock;
+import eu.pb4.polymer.blocks.api.BlockModelType;
+import eu.pb4.polymer.blocks.api.PolymerBlockResourceUtils;
+import eu.pb4.polymer.blocks.api.PolymerTexturedBlock;
 import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,12 +19,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(value = OverworldGeyser.class, remap = false)
-public class MixinOverworldGeyserBlock implements FactoryBlock {
+public class MixinOverworldGeyserBlock implements FactoryBlock, PolymerTexturedBlock {
     @Shadow @Final public static BooleanProperty SNOWY;
 
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
-        return state.get(SNOWY) ? Blocks.SNOW.getDefaultState() : Blocks.STRUCTURE_VOID.getDefaultState();
+        return state.get(SNOWY) ? Blocks.SNOW.getDefaultState() : PolymerBlockResourceUtils.requestEmpty(BlockModelType.TRIPWIRE_BLOCK_FLAT);
     }
 
     @Override
