@@ -24,7 +24,7 @@ public class MixinStarfishBlock implements FactoryBlock, PolymerTexturedBlock {
 
     @Override
     public BlockState getPolymerBlockState(BlockState state) {
-        if (state.get(WATERLOGGED)) return PolymerBlockResourceUtils.requestEmpty(BlockModelType.BOTTOM_SLAB_WATERLOGGED);
+        if (state.get(WATERLOGGED)) return PolymerBlockResourceUtils.requestEmpty(BlockModelType.KELP_BLOCK);
         else return PolymerBlockResourceUtils.requestEmpty(BlockModelType.TRIPWIRE_BLOCK_FLAT);
     }
 
